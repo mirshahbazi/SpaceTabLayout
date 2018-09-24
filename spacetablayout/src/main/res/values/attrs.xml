@@ -35,11 +35,11 @@
         <attr name="button_color" format="color" />
         <attr name="text_color" format="color" />
 
-        <attr name="icon_one" format="integer" />
-        <attr name="icon_two" format="integer" />
-        <attr name="icon_three" format="integer" />
-        <attr name="icon_four" format="integer" />
-        <attr name="icon_five" format="integer" />
+        <attr name="icon_one" format="reference" />
+        <attr name="icon_two" format="reference" />
+        <attr name="icon_three" format="reference" />
+        <attr name="icon_four" format="reference" />
+        <attr name="icon_five" format="reference" />
 
         <attr name="text_one" format="string" />
         <attr name="text_two" format="string" />

@@ -47,7 +47,7 @@
             android:src="@drawable/background" />
 
 
-        <Button
+        <ImageButton
             android:id="@+id/fab"
             android:layout_width="@dimen/action_button_size"
             android:layout_height="@dimen/action_button_size"
