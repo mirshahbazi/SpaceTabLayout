@@ -47,10 +47,11 @@
             android:src="@drawable/background" />
 
 
-        <android.support.design.widget.FloatingActionButton
+        <Button
             android:id="@+id/fab"
             android:layout_width="@dimen/action_button_size"
             android:layout_height="@dimen/action_button_size"
+            android:background="@android:color/transparent"
             android:layout_centerInParent="true" />
     </RelativeLayout>
 

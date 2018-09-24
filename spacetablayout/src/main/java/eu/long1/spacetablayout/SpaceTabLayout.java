@@ -37,9 +37,11 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -61,7 +63,7 @@ public class SpaceTabLayout extends RelativeLayout {
 
     private RelativeLayout parentLayout;
     private RelativeLayout selectedTabLayout;
-    private FloatingActionButton actionButton;
+    private Button actionButton;
     private ImageView backgroundImage;
     private ImageView backgroundImage2;
 
@@ -93,11 +95,11 @@ public class SpaceTabLayout extends RelativeLayout {
     private OnClickListener tabFiveOnClickListener;
 
 
-    private Drawable defaultTabOneButtonIcon;
-    private Drawable defaultTabTwoButtonIcon;
-    private Drawable defaultTabThreeButtonIcon;
-    private Drawable defaultTabFourButtonIcon;
-    private Drawable defaultTabFiveButtonIcon;
+    private int defaultTabOneButtonIcon;
+    private int defaultTabTwoButtonIcon;
+    private int defaultTabThreeButtonIcon;
+    private int defaultTabFourButtonIcon;
+    private int defaultTabFiveButtonIcon;
 
     private int defaultTextColor;
     private int defaultButtonColor;
@@ -136,15 +138,15 @@ public class SpaceTabLayout extends RelativeLayout {
         backgroundImage = (ImageView) findViewById(R.id.backgroundImage);
         backgroundImage2 = (ImageView) findViewById(R.id.backgroundImage2);
 
-        actionButton = (FloatingActionButton) findViewById(R.id.fab);
+        actionButton = (Button) findViewById(R.id.fab);
 
         tabLayout = (TabLayout) findViewById(R.id.spaceTab);
 
-        defaultTabOneButtonIcon = getContext().getResources().getDrawable(R.drawable.ic_tab_one);
-        defaultTabTwoButtonIcon = getContext().getResources().getDrawable(R.drawable.ic_tab_two);
-        defaultTabThreeButtonIcon = getContext().getResources().getDrawable(R.drawable.ic_tab_three);
-        defaultTabFourButtonIcon = getContext().getResources().getDrawable(R.drawable.ic_tab_four);
-        defaultTabFiveButtonIcon = getContext().getResources().getDrawable(R.drawable.ic_tab_five);
+        defaultTabOneButtonIcon =R.drawable.ic_tab_one;
+        defaultTabTwoButtonIcon = R.drawable.ic_tab_two;
+        defaultTabThreeButtonIcon = R.drawable.ic_tab_three;
+        defaultTabFourButtonIcon = R.drawable.ic_tab_four;
+        defaultTabFiveButtonIcon = R.drawable.ic_tab_five;
 
         defaultTextColor = ContextCompat.getColor(getContext(), android.R.color.primary_text_dark);
 
@@ -170,40 +172,40 @@ public class SpaceTabLayout extends RelativeLayout {
                     switch (numberOfTabs) {
                         case 3:
                             startingPosition = 1;
-                            actionButton.setImageDrawable(defaultTabTwoButtonIcon);
+                            actionButton.setBackgroundResource(defaultTabTwoButtonIcon);
                             actionButton.setOnClickListener(tabTwoOnClickListener);
                             break;
                         case 4:
                             startingPosition = 0;
-                            actionButton.setImageDrawable(defaultTabOneButtonIcon);
+                            actionButton.setBackgroundResource(defaultTabOneButtonIcon);
                             actionButton.setOnClickListener(tabOneOnClickListener);
                             break;
                         case 5:
                             startingPosition = 2;
-                            actionButton.setImageDrawable(defaultTabThreeButtonIcon);
+                            actionButton.setBackgroundResource(defaultTabThreeButtonIcon);
                             actionButton.setOnClickListener(tabThreeOnClickListener);
                             break;
                     }
                 } else {
                     switch (startingPosition) {
                         case 0:
-                            actionButton.setImageDrawable(defaultTabOneButtonIcon);
+                            actionButton.setBackgroundResource(defaultTabOneButtonIcon);
                             actionButton.setOnClickListener(tabOneOnClickListener);
                             break;
                         case 1:
-                            actionButton.setImageDrawable(defaultTabTwoButtonIcon);
+                            actionButton.setBackgroundResource(defaultTabTwoButtonIcon);
                             actionButton.setOnClickListener(tabTwoOnClickListener);
                             break;
                         case 2:
-                            actionButton.setImageDrawable(defaultTabThreeButtonIcon);
+                            actionButton.setBackgroundResource(defaultTabThreeButtonIcon);
                             actionButton.setOnClickListener(tabThreeOnClickListener);
                             break;
                         case 3:
-                            actionButton.setImageDrawable(defaultTabFourButtonIcon);
+                            actionButton.setBackgroundResource(defaultTabFourButtonIcon);
                             actionButton.setOnClickListener(tabFourOnClickListener);
                             break;
                         case 4:
-                            actionButton.setImageDrawable(defaultTabFiveButtonIcon);
+                            actionButton.setBackgroundResource(defaultTabFiveButtonIcon);
                             actionButton.setOnClickListener(tabFiveOnClickListener);
                             break;
                     }
@@ -218,21 +220,25 @@ public class SpaceTabLayout extends RelativeLayout {
                 defaultTextColor = a.getColor(attr, ContextCompat.getColor(getContext(), android.R.color.primary_text_dark));
 
             } else if (attr == R.styleable.SpaceTabLayout_icon_one) {
-                defaultTabOneButtonIcon = a.getDrawable(attr);
+//                defaultTabOneButtonIcon = a.getDrawable(attr);
 
             } else if (attr == R.styleable.SpaceTabLayout_icon_two) {
-                defaultTabTwoButtonIcon = a.getDrawable(attr);
+//                defaultTabTwoButtonIcon = a.getDrawable(attr);
+                Log.d("","");
 
             } else if (attr == R.styleable.SpaceTabLayout_icon_three) {
-                defaultTabThreeButtonIcon = a.getDrawable(attr);
+//                defaultTabThreeButtonIcon = a.getDrawable(attr);
+                Log.d("","");
 
             } else if (attr == R.styleable.SpaceTabLayout_icon_four) {
                 if (numberOfTabs > 3)
-                    defaultTabFourButtonIcon = a.getDrawable(attr);
+//                    defaultTabFourButtonIcon = a.getDrawable(attr);
+                    Log.d("","");
 
             } else if (attr == R.styleable.SpaceTabLayout_icon_five) {
                 if (numberOfTabs > 4)
-                    defaultTabFiveButtonIcon = a.getDrawable(attr);
+//                    defaultTabFiveButtonIcon = a.getDrawable(attr);
+                    Log.d("","");
 
             } else if (attr == R.styleable.SpaceTabLayout_text_one) {
                 text_one = a.getString(attr);
@@ -415,23 +421,23 @@ public class SpaceTabLayout extends RelativeLayout {
             float backgroundX = -tabSize.get(2) / 2 + getX(position, tabSize) + 42;
             switch (position) {
                 case 0:
-                    actionButton.setImageDrawable(defaultTabOneButtonIcon);
+                    actionButton.setBackgroundResource(defaultTabOneButtonIcon);
                     actionButton.setOnClickListener(tabOneOnClickListener);
                     break;
                 case 1:
-                    actionButton.setImageDrawable(defaultTabTwoButtonIcon);
+                    actionButton.setBackgroundResource(defaultTabTwoButtonIcon);
                     actionButton.setOnClickListener(tabTwoOnClickListener);
                     break;
                 case 2:
-                    actionButton.setImageDrawable(defaultTabThreeButtonIcon);
+                    actionButton.setBackgroundResource(defaultTabThreeButtonIcon);
                     actionButton.setOnClickListener(tabThreeOnClickListener);
                     break;
                 case 3:
-                    actionButton.setImageDrawable(defaultTabFourButtonIcon);
+                    actionButton.setBackgroundResource(defaultTabFourButtonIcon);
                     actionButton.setOnClickListener(tabFourOnClickListener);
                     break;
                 case 4:
-                    actionButton.setImageDrawable(defaultTabFiveButtonIcon);
+                    actionButton.setBackgroundResource(defaultTabFiveButtonIcon);
                     actionButton.setOnClickListener(tabFiveOnClickListener);
                     break;
 
@@ -593,12 +599,13 @@ public class SpaceTabLayout extends RelativeLayout {
         backgroundImage2.setImageDrawable(image2);
     }
 
-    public FloatingActionButton getButton() {
+    public Button getButton() {
         return actionButton;
     }
 
     public void setButtonColor(@ColorInt int backgroundColor) {
-        actionButton.setBackgroundTintList(ColorStateList.valueOf(backgroundColor));
+       // actionButton.setBackgroundTintList(ColorStateList.valueOf(backgroundColor));
+
     }
 
 
@@ -671,59 +678,59 @@ public class SpaceTabLayout extends RelativeLayout {
 
 
     public void setTabOneIcon(@DrawableRes int tabOneIcon) {
-        defaultTabOneButtonIcon = getContext().getResources().getDrawable(tabOneIcon);
+        defaultTabOneButtonIcon = tabOneIcon;
         tabOneImageView.setImageResource(tabOneIcon);
     }
 
     public void setTabOneIcon(Drawable tabOneIcon) {
-        defaultTabOneButtonIcon = tabOneIcon;
+//        defaultTabOneButtonIcon = tabOneIcon;
         tabOneImageView.setImageDrawable(tabOneIcon);
     }
 
     public void setTabTwoIcon(@DrawableRes int tabTwoIcon) {
-        defaultTabTwoButtonIcon = getContext().getResources().getDrawable(tabTwoIcon);
+        defaultTabTwoButtonIcon = tabTwoIcon;
         tabTwoImageView.setImageResource(tabTwoIcon);
     }
 
     public void setTabTwoIcon(Drawable tabTwoIcon) {
-        defaultTabTwoButtonIcon = tabTwoIcon;
+//        defaultTabTwoButtonIcon = tabTwoIcon;
         tabTwoImageView.setImageDrawable(tabTwoIcon);
     }
 
     public void setTabThreeIcon(@DrawableRes int tabThreeIcon) {
-        defaultTabThreeButtonIcon = getContext().getResources().getDrawable(tabThreeIcon);
+        defaultTabThreeButtonIcon = tabThreeIcon;
         tabThreeImageView.setImageResource(tabThreeIcon);
     }
 
     public void setTabThreeIcon(Drawable tabThreeIcon) {
-        defaultTabThreeButtonIcon = tabThreeIcon;
+//        defaultTabThreeButtonIcon = tabThreeIcon;
         tabThreeImageView.setImageDrawable(tabThreeIcon);
     }
 
     public void setTabFourIcon(@DrawableRes int tabFourIcon) {
         if (numberOfTabs > 3) {
-            defaultTabFourButtonIcon = getContext().getResources().getDrawable(tabFourIcon);
+            defaultTabFourButtonIcon = tabFourIcon;
             tabFourImageView.setImageResource(tabFourIcon);
         } else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
 
     public void setTabFourIcon(Drawable tabFourIcon) {
         if (numberOfTabs > 3) {
-            defaultTabFourButtonIcon = tabFourIcon;
+//            defaultTabFourButtonIcon = tabFourIcon;
             tabFourImageView.setImageDrawable(tabFourIcon);
         } else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
 
     public void setTabFiveIcon(@DrawableRes int tabFiveIcon) {
         if (numberOfTabs > 4) {
-            defaultTabFiveButtonIcon = getContext().getResources().getDrawable(tabFiveIcon);
+            defaultTabFiveButtonIcon = tabFiveIcon;
             tabFiveImageView.setImageResource(tabFiveIcon);
         } else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
 
     public void setTabFiveIcon(Drawable tabFiveIcon) {
         if (numberOfTabs > 4) {
-            defaultTabFiveButtonIcon = tabFiveIcon;
+//            defaultTabFiveButtonIcon = tabFiveIcon;
             tabFiveImageView.setImageDrawable(tabFiveIcon);
         } else throw new IllegalArgumentException("You have " + numberOfTabs + " tabs.");
     }
